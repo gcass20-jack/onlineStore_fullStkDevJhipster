@@ -24,6 +24,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  filter: string | undefined; // chapter 5 filtering functionality
+  // reverse: any; // 181020: see transition() method to understand why
 
   constructor(
     protected productService: ProductService,
@@ -124,4 +126,25 @@ export class ProductComponent implements OnInit, OnDestroy {
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
   }
+
+  /* 
+  181020: [(ascending)]="ascending" [callback]="loadPage.bind(this)" in the <div> annotated with jhiSort does not work
+  if 'reverse' variable is used and transition.bind(this). jhiSortBy annotation for html elems within means predicate(col to sort) 
+  is sent and ascending is inversed everytime. when 'reverse' was set to [(ascending)], 'reverse' is the one that keeps inversing...
+
+ */
+  // transition(): void {
+  //   const flippedBoolean = !this.ascending;
+  //   this.ascending = flippedBoolean;
+  //   this.router.navigate(['/product'], {
+  //     queryParams: {
+  //       page: this.page,
+  //       size: this.itemsPerPage,
+  //       // sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+  //       sort: this.predicate + ',' + (this.ascending ? 'asc' : 'desc')
+  //     }
+  //   });
+  //   // this.loadAll();
+  //   this.loadPage();
+  // }
 }
