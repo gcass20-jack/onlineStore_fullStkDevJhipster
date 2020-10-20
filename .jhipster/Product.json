@@ -4,7 +4,9 @@
     {
       "fieldName": "name",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "description",
@@ -13,14 +15,19 @@
     {
       "fieldName": "price",
       "fieldType": "BigDecimal",
-      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRules": [
+        "required",
+        "min"
+      ],
       "fieldValidateRulesMin": "0"
     },
     {
       "fieldName": "size",
       "fieldType": "Size",
       "fieldValues": "S,M,L,XL,XXL",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "image",
@@ -34,7 +41,7 @@
       "otherEntityName": "productCategory",
       "otherEntityRelationshipName": "product",
       "relationshipName": "productCategory",
-      "otherEntityField": "name"
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20201014072938",

@@ -8,7 +8,9 @@
     {
       "fieldName": "date",
       "fieldType": "Instant",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": [
+        "required"
+      ]
     },
     {
       "fieldName": "details",
@@ -20,9 +22,8 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "invoice",
       "otherEntityRelationshipName": "shipment",
-      "relationshipValidateRules": "required",
       "relationshipName": "invoice",
-      "otherEntityField": "code"
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20201014073538",
@@ -35,5 +36,5 @@
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": ["store"]
+  "applications": "*"
 }
