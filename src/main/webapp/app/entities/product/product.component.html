@@ -117,7 +117,7 @@
                                 <h5 class="mb-1">{{ product.name }}</h5>
                             </a> <small *ngIf="product.productCategory"> <a
                                     [routerLink]="['/product-category', product .productCategory?.id, 'view']">
-                                    Category: {{ product.productCategory?.id }} </a> </small> </div> <small
+                                    Category: {{ product.productCategory?.name }} </a> </small> </div> <small
                             class="mb-1">{{ product.description }}</small>
                         <p class="mb-1">Price: {{ product.price | currency: 'USD' }}</p> <small> Size: <span
                                 jhiTranslate="{{ 'storeApp.Size.' + product.size  }}"> {{ product.size }} </span>
