@@ -1,0 +1,112 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="TOBMM (generated)" id="1603336446293-2">
+        <createTable tableName="invoice">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="invoicePK"/>
+            </column>
+            <column name="code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="details" type="VARCHAR(255)"/>
+            <column name="payment_amount" type="DECIMAL(21, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_method" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-3">
+        <createTable tableName="order_item">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="order_itemPK"/>
+            </column>
+            <column name="quantity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="DECIMAL(21, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-4">
+        <createTable tableName="product_order">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="product_orderPK"/>
+            </column>
+            <column name="code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="placed_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-5">
+        <createTable tableName="shipment">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="shipmentPK"/>
+            </column>
+            <column name="date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="details" type="VARCHAR(255)"/>
+            <column name="tracking_code" type="VARCHAR(255)"/>
+            <column name="invoice_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-6">
+        <addForeignKeyConstraint baseColumnNames="invoice_id" baseTableName="shipment" constraintName="FK2ig0m7m6413axtcmhjt8nn9tk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="invoice" validate="true"/>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-7">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="order_item" constraintName="FK551losx9j75ss5d6bfsqvijna" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product" validate="true"/>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-8">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="product_order" constraintName="FKa90wgrcf86ft7kh3pjivc5c5e" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="customer" validate="true"/>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-9">
+        <addForeignKeyConstraint baseColumnNames="product_category_id" baseTableName="product" constraintName="FKcwclrqu392y86y0pmyrsi649r" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product_category" validate="true"/>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-10">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_item" constraintName="FKcwnc6atos63ni9l8jvqmlmad3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product_order" validate="true"/>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-11">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="customer" constraintName="FKg09blp5mmjq2s3vgngse5ug4a" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-12">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="invoice" constraintName="FKg86dcq92iyykhcwpyh1oxyo59" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="product_order" validate="true"/>
+    </changeSet>
+    <changeSet author="TOBMM (generated)" id="1603336446293-1">
+        <setTableRemarks tableName="product"/>
+    </changeSet>
+</databaseChangeLog>
