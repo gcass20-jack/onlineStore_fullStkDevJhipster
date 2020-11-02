@@ -128,7 +128,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   /* 
-  181020: [(ascending)]="ascending" [callback]="loadPage.bind(this)" in the <div> annotated with jhiSort does not work
+  181020: [(ascending)]="ascending" [callback]="transition.bind(this)" in the <div> annotated with jhiSort does not work
   if 'reverse' variable is used and transition.bind(this). jhiSortBy annotation for html elems within means predicate(col to sort) 
   is sent and ascending is inversed everytime. when 'reverse' was set to [(ascending)], 'reverse' is the one that keeps inversing...
 
